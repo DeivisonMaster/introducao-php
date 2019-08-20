@@ -1,5 +1,7 @@
 <?php
 
+$mensagem = "";
+
 if($_POST){ // validação caso não seja uma submissão via POST
 
     $distancia = $_POST["distancia"];
@@ -21,19 +23,51 @@ if($_POST){ // validação caso não seja uma submissão via POST
             $calculoDiesel   = ($distancia / $autonomia) * $valorDiesel;
             $calculoDiesel   = number_format($calculoDiesel, 2, ',', '.');
 
-            print "<p>Valor Gasolina R$ ".$calculoGasolina."</p>";
-            print "<p>Valor Gasolina R$ ".$calculoAlcool."</p>";
-            print "<p>Valor Gasolina R$ ".$calculoDiesel."</p>";
+            $mensagem.= "<div class='sucesso'>";
+            $mensagem.= "O valor total gasto será de: ";
+            $mensagem.= "<ul>";
+            $mensagem.= "<p>Gasolina R$ ".$calculoGasolina."</p>";
+            $mensagem.= "<p>Gasolina R$ ".$calculoAlcool."</p>";
+            $mensagem.= "<p>Gasolina R$ ".$calculoDiesel."</p>";
+            $mensagem.= "</ul>";
+            $mensagem.= "</div>";
         }else{
-            print "<p>O valor da distância e autonomia devem ser maiores que 0</p>";    
+            $mensagem.="<div class='erro'">
+            $mensagem.="<p>O valor da distância e autonomia devem ser maiores que 0</p>";    
+            $mensagem.="</div>";
         }
         
     }else{
-        print "<p>O valor recebido não é numérico</p>";
+        $mensagem.="<div class='erro'">
+        $mensagem.="<p>O valor recebido não é numérico</p>";
+        $mensagem.="</div>";
     }
 
 }else{
-    print "<p>Nenhum dado foi recebido pelo formulário</p>";
+    $mensagem.="<div class='erro'">
+    $mensagem.="<p>Nenhum dado foi recebido pelo formulário</p>";
+    $mensagem.="</div>";
 }
-
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <title>Calculo de Consumo de Combustível</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>    
+    <main>
+        <div class="painel">
+            <h2>Resultado do cálculo de consumo</h2>
+            <div class="conteudo-painel">
+                <?php
+                    print $mensagem;
+                ?>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
