@@ -13,8 +13,13 @@ if($_POST){ // validação caso não seja uma submissão via POST
         
         if($distancia > 0 && $autonomia > 0){
             $calculoGasolina = ($distancia / $autonomia) * $valorGasolina;
+            $calculoGasolina = number_format($calculoGasolina, 2, ',', '.');
+
             $calculoAlcool   = ($distancia / $autonomia) * $valorAlcool;
+            $calculoAlcool   = number_format($calculoAlcool, 2, ',', '.');
+
             $calculoDiesel   = ($distancia / $autonomia) * $valorDiesel;
+            $calculoDiesel   = number_format($calculoDiesel, 2, ',', '.');
 
             print "<p>Valor Gasolina R$ ".$calculoGasolina."</p>";
             print "<p>Valor Gasolina R$ ".$calculoAlcool."</p>";
