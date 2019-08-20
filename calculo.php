@@ -20,7 +20,7 @@ if($_POST){ // validação caso não seja uma submissão via POST
             print "<p>Valor Gasolina R$ ".$calculoAlcool."</p>";
             print "<p>Valor Gasolina R$ ".$calculoDiesel."</p>";
         }else{
-            print "<p>O valor recebido não é número válido</p>";    
+            print "<p>O valor da distância e autonomia devem ser maiores que 0</p>";    
         }
         
     }else{
