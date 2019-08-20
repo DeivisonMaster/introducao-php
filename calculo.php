@@ -1,7 +1,7 @@
 <?php
 
-if($_POST){
-    
+if($_POST){ // validação caso não seja uma submissão via POST
+
     $distancia = $_POST["distancia"];
     $autonomia = $_POST["autonomia"];
 
@@ -9,16 +9,20 @@ if($_POST){
     $valorAlcool    = 3.80;
     $valorDiesel    = 3.90;
 
-    $calculoGasolina = ($distancia / $autonomia) * $valorGasolina;
-    $calculoAlcool   = ($distancia / $autonomia) * $valorAlcool;
-    $calculoDiesel   = ($distancia / $autonomia) * $valorDiesel;
+    if(is_numeric($distancia) && is_numeric($autonomia)){ // validação caso dados não sejam numericos
+        $calculoGasolina = ($distancia / $autonomia) * $valorGasolina;
+        $calculoAlcool   = ($distancia / $autonomia) * $valorAlcool;
+        $calculoDiesel   = ($distancia / $autonomia) * $valorDiesel;
 
-    print "<p>Valor Gasolina R$ ".$calculoGasolina."</p>";
-    print "<p>Valor Gasolina R$ ".$calculoAlcool."</p>";
-    print "<p>Valor Gasolina R$ ".$calculoDiesel."</p>";
+        print "<p>Valor Gasolina R$ ".$calculoGasolina."</p>";
+        print "<p>Valor Gasolina R$ ".$calculoAlcool."</p>";
+        print "<p>Valor Gasolina R$ ".$calculoDiesel."</p>";
+    }else{
+        print "<p>O valor recebido não é numérico</p>";
+    }
 
 }else{
-    print "<p>Nenhum dado foi recebido pelo formulário</>";
+    print "<p>Nenhum dado foi recebido pelo formulário</p>";
 }
 
 ?>
