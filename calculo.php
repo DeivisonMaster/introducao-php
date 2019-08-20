@@ -1,5 +1,7 @@
 <?php
 
+if($_POST){
+    
     $distancia = $_POST["distancia"];
     $autonomia = $_POST["autonomia"];
 
@@ -15,7 +17,8 @@
     print "<p>Valor Gasolina R$ ".$calculoAlcool."</p>";
     print "<p>Valor Gasolina R$ ".$calculoDiesel."</p>";
 
-
-
+}else{
+    print "<p>Nenhum dado foi recebido pelo formulário</>";
+}
 
 ?>
